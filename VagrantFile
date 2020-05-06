@@ -1,0 +1,30 @@
+# coding: utf-8
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  ##  Minikube仮想マシンの起動
+  #
+  config.vm.define 'base' do |machine|
+    machine.vm.box = "ubuntu/xenial64"
+    machine.vm.hostname = 'base'
+    machine.vm.network :private_network,ip: "172.16.10.10"
+    machine.vm.provider "virtualbox" do |vbox|
+      vbox.gui = false        
+      vbox.cpus = 2
+      vbox.memory = 2048
+    end
+
+    ## Ansible
+    #
+    machine.vm.provision "ansible_local" do |ansible|
+      ansible.playbook       = "ansible/base.yml"
+      ansible.version        = "latest"      
+      ansible.verbose        = false
+      ansible.install        = true
+      ansible.limit          = "base"      
+      ansible.inventory_path = "ansible/hosts"
+    end
+  end
+end
