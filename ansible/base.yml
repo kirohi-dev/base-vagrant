@@ -130,15 +130,15 @@
   #    group: vagrant
   #    mode: 0755
 
-  - shell: mv /root/.kube /home/vagrant/.kube
-  - shell: chown -R vagrant:vagrant /home/vagrant/.kube
+  # - shell: mv /root/.kube /home/vagrant/.kube
+  # - shell: chown -R vagrant:vagrant /home/vagrant/.kube
 
-  - shell: mv /root/.minikube /home/vagrant/.minikube
-  - shell: chown -R vagrant:vagrant /home/vagrant/.minikube
+  # - shell: mv /root/.minikube /home/vagrant/.minikube
+  # - shell: chown -R vagrant:vagrant /home/vagrant/.minikube
 
 
-  - name: change path
-    command: sed -i -e 's|root|home\/vagrant|g' /home/vagrant/.kube/config
+  # - name: change path
+  #   command: sed -i -e 's|root|home\/vagrant|g' /home/vagrant/.kube/config
 
   ## restart minikube under /home/vagrant
   #
